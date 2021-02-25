@@ -1,0 +1,36 @@
+<nav class="navbar navbar-light bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Choferes</a>
+  </div>
+</nav>
+
+<div class="row pad-10">
+
+<div class="col-8">
+<h3>Mapa <small *ngIf="followName">siguiendo a: {{ followName }} </small></h3>
+<agm-map [latitude]="lat" [longitude]="lon" [zoom]=10>
+  <agm-marker *ngFor="let chofer of listado" [latitude]="chofer.lat" [longitude]="chofer.lon"></agm-marker>
+</agm-map>
+</div>
+
+<div class="col-4">
+  <h3>Choferes</h3>
+  <ul class="list-group">
+    <li class="list-group-item active" aria-current="true" (click)="seguir( chofer )" *ngFor="let chofer of listado">{{chofer.Nombre}}</li>
+
+  </ul>
+  <ul>
+
+
+    <br>
+    <button *ngIf="followName" (click)="dejarDeSeguir()" class="btn btn-primary btn-block">
+        Dejar de seguir
+    </button>
+
+    <!-- <li class="text" *ngFor="let chofer of listado | async">
+      {{chofer.Nombre}}
+    </li> -->
+   
+  </ul>
+</div>
+</div>
